@@ -86,7 +86,7 @@ particlesJS("particles-js", {
 
 // Initialize necessary DOM elements and event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Form elements
+    // Get both forms
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     const loginUsername = document.getElementById('login-username');
@@ -95,63 +95,143 @@ document.addEventListener('DOMContentLoaded', function() {
     const regEmail = document.getElementById('reg-email');
     const regPassword = document.getElementById('reg-password');
     const regConfirmPassword = document.getElementById('reg-confirm-password');
-    // Add form submit event listeners
     if (loginForm) {
         loginForm.addEventListener('submit', validateLoginForm);
+
+        // Get login form inputs
+        const loginUsername = loginForm.querySelector('input[type="text"]');
+        const loginPassword = loginForm.querySelector('input[type="password"]');
+
+        if (loginUsername) {
+            loginUsername.id = 'login-username';
+        }
+        if (loginPassword) {
+            loginPassword.id = 'login-password';
+        }
     }
+
     if (registerForm) {
         registerForm.addEventListener('submit', validateRegisterForm);
+
+        // Get register form inputs
+        const regUsername = registerForm.querySelector('input[type="text"]');
+        const regEmail = registerForm.querySelector('input[type="email"]');
+        const regPassword = registerForm.querySelector('input[type="password"]');
+        const regConfirmPassword = registerForm.querySelectorAll('input[type="password"]')[1];
+
+        if (regUsername) {
+            regUsername.id = 'reg-username';
+        }
+        if (regEmail) {
+            regEmail.id = 'reg-email';
+        }
+        if (regPassword) {
+            regPassword.id = 'reg-password';
+        }
+        if (regConfirmPassword) {
+            regConfirmPassword.id = 'reg-confirm-password';
+        }
     }
+    // Add form submit event listeners
+    document.querySelectorAll('.toggle-form').forEach(toggleBtn => {
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Toggle button clicked'); // Debug log
 
-    // Initialize password strength checker
-    if (regPassword) {
-        regPassword.addEventListener('input', function() {
-            updatePasswordStrength(this.value);
-        });
-    }
-
-    // Initialize password toggle functionality
-    initPasswordToggles();
-});
-
-// Password toggle functionality
-function initPasswordToggles() {
-    document.querySelectorAll('.toggle-password').forEach(icon => {
-        icon.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const input = document.getElementById(targetId);
-
-            if (input) {
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    this.classList.remove('fa-eye-slash');
-                    this.classList.add('fa-eye');
-                } else {
-                    input.type = 'password';
-                    this.classList.remove('fa-eye');
-                    this.classList.add('fa-eye-slash');
-                }
-
-                this.style.transform = 'translateY(-50%) scale(1.2)';
+            if (loginForm.classList.contains('hidden')) {
+                // Switch to login form
+                registerForm.classList.add('hidden');
                 setTimeout(() => {
-                    this.style.transform = 'translateY(-50%) scale(1)';
-                }, 200);
+                    loginForm.classList.remove('hidden');
+                }, 100);
+            } else {
+                // Switch to register form
+                loginForm.classList.add('hidden');
+                setTimeout(() => {
+                    registerForm.classList.remove('hidden');
+                }, 100);
             }
         });
-    });
-}
 
-// Form toggle functionality
-document.querySelectorAll('.toggle-form').forEach(toggle => {
-    toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            if (form.style.display !== 'none') {
-                form.style.display = 'none';
-            } else {
-                form.style.display = 'block';
+
+
+        // Password toggle functionality
+        function initPasswordToggles() {
+            document.querySelectorAll('.toggle-password').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+
+                    if (input) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            this.classList.remove('fa-eye-slash');
+                            this.classList.add('fa-eye');
+                        } else {
+                            input.type = 'password';
+                            this.classList.remove('fa-eye');
+                            this.classList.add('fa-eye-slash');
+                        }
+
+                        this.style.transform = 'translateY(-50%) scale(1.2)';
+                        setTimeout(() => {
+                            this.style.transform = 'translateY(-50%) scale(1)';
+                        }, 200);
+                    }
+                });
+            });
+        }
+        if (loginForm) {
+            loginForm.addEventListener('submit', validateLoginForm);
+
+            // Get login form inputs
+            const loginUsername = loginForm.querySelector('input[type="text"]');
+            const loginPassword = loginForm.querySelector('input[type="password"]');
+
+            if (loginUsername) {
+                loginUsername.id = 'login-username';
             }
+            if (loginPassword) {
+                loginPassword.id = 'login-password';
+            }
+        }
+
+        if (registerForm) {
+            registerForm.addEventListener('submit', validateRegisterForm);
+
+            // Get register form inputs
+            const regUsername = registerForm.querySelector('input[type="text"]');
+            const regEmail = registerForm.querySelector('input[type="email"]');
+            const regPassword = registerForm.querySelector('input[type="password"]');
+            const regConfirmPassword = registerForm.querySelectorAll('input[type="password"]')[1];
+
+            if (regUsername) {
+                regUsername.id = 'reg-username';
+            }
+            if (regEmail) {
+                regEmail.id = 'reg-email';
+            }
+            if (regPassword) {
+                regPassword.id = 'reg-password';
+            }
+            if (regConfirmPassword) {
+                regConfirmPassword.id = 'reg-confirm-password';
+            }
+        }
+    });
+    // Form toggle functionality
+    // Form toggle functionality
+    document.querySelectorAll('.toggle-form').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                if (form.style.display !== 'none') {
+                    form.style.display = 'none';
+                } else {
+                    form.style.display = 'block';
+                }
+            });
         });
     });
 });
@@ -240,16 +320,26 @@ function validateRegisterForm(event) {
 function validateLoginForm(event) {
     event.preventDefault();
 
-    const form = event.target;
+    const form = event.currentTarget;
     const submitButton = form.querySelector('button[type="submit"]');
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+    const username = document.getElementById('login-username');
+    const password = document.getElementById('login-password');
+
+    if (!username || !password) {
+        console.error('Login form elements not found');
+        return;
+    }
 
     removeAllErrors();
     let isValid = true;
-    //batas user atau invalid
-    if (username.length < 5) {
+
+    if (username.value.length < 5) {
         showError('login-username', 'Invalid username');
+        isValid = false;
+    }
+
+    if (password.value.length < 1) {
+        showError('login-password', 'Password is required');
         isValid = false;
     }
 
@@ -262,24 +352,25 @@ function validateLoginForm(event) {
         submitButton.disabled = true;
         submitButton.classList.add('loading');
 
-        // tempat link html
+        // Simulate login process
         setTimeout(() => {
             incrementLoginAttempts();
             showSuccess(form, 'Login successful! Redirecting...');
             setTimeout(() => {
-                window.location.href = '/login.html';
+                window.location.href = 'index.html'; // Make sure this path is correct
             }, 2000);
         }, 1500);
     }
 }
-
 // Helper functions
 function showError(elementId, message) {
     const element = document.getElementById(elementId);
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    element.parentNode.insertBefore(errorDiv, element.nextSibling);
+    if (element) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        element.parentNode.insertBefore(errorDiv, element.nextSibling);
+    }
 }
 
 function showSuccess(form, message) {
@@ -295,13 +386,14 @@ function removeAllErrors() {
 
 // banyak login dan durasi
 const STORAGE_KEY = 'loginAttempts';
-const MAX_ATTEMPTS = 1;
-const LOCKOUT_DURATION = 0 * 60 * 100; // 30 minutes
+const MAX_ATTEMPTS = 3;
+const LOCKOUT_DURATION = 50 * 60 * 100; // 30 minutes
 
 function getLoginAttempts() {
     const attempts = localStorage.getItem(STORAGE_KEY);
     return attempts ? JSON.parse(attempts) : { count: 0, timestamp: Date.now() };
 }
+
 
 function incrementLoginAttempts() {
     const attempts = getLoginAttempts();
