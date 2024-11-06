@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    top: 0;
+    left: 0;
+    z-index: 0;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background: linear-gradient(45deg, #000000, #1a1a1a);
+    }
+    50% {
+        background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+    }
+    100% {
+        background: linear-gradient(45deg, #000000, #1a1a1a);
+    }
+}
+
+.login-page {
+    width: 100%;
+    max-width: 420px;
+    padding: 6% 20px 0;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.login-page>* {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+/* Container styling */
+
+.login-page {
+    position: relative;
+    min-height: 600px;
+    /* Adjust based on your form height */
+}
+
+.Logo {
+    width: 200px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    transition: all 0.3s ease;
+}
+
+.Logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.form {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    backdrop-filter: blur(15px);
+    max-width: 100%;
+    margin: 0 auto 50px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+}
+
+.form.hidden {
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-title {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -10px;
+    left: 5px;
+    font-size: 12px;
+    color: #48A277;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0 5px;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    z-index: 2;
+    padding: 5px;
+}
+
+.toggle-password:hover {
+    color: #48A277;
+}
+
+.form input {
+    font-family: 'Poppins', sans-serif;
+    outline: 0;
+    background: rgba(242, 242, 242, 0.9);
+    width: 100%;
+    border: 2px solid transparent;
+    margin: 0;
+    padding: 15px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form input:focus {
+    background: #ffffff;
+    border-color: #48A277;
+    box-shadow: 0 0 15px rgba(72, 162, 119, 0.3);
+}
+
+.form input[type="password"] {
+    letter-spacing: 0.3em;
+}
+
+.form button {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #48A277;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+}
+
+.form button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+}
+
+.form button:hover:before {
+    left: 100%;
+}
+
+.form button:hover {
+    background: #3d8b65;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(72, 162, 119, 0.4);
+}
+
+.form button:active {
+    transform: translateY(0);
+}
+
+.form .message {
+    margin: 20px 0 0;
+    color: #b3b3b3;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form .message a {
+    color: #48A277;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.fa-solid,
+.fas {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    height: 30px;
+}
+
+.form .message a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: #48A277;
+    transition: all 0.3s ease;
+}
+
+.form .message a:hover:after {
+    width: 100%;
+}
+
+.form .message a:hover {
+    color: #3d8b65;
+    text-shadow: 0 0 10px rgba(72, 162, 119, 0.3);
+}
+
+.password-strength {
+    height: 4px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background: #ddd;
+}
+
+.strength-weak {
+    background: linear-gradient(90deg, #ff4444 0%, #ff6b6b 100%);
+}
+
+.strength-medium {
+    background: linear-gradient(90deg, #ffa000 0%, #ffbb33 100%);
+}
+
+.strength-strong {
+    background: linear-gradient(90deg, #48A277 0%, #5abe8c 100%);
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeInUp 0.3s ease;
+}
+
+.success-message {
+    color: #48A277;
+    font-size: 14px;
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+
+/* Social Login Buttons */
+
+.social-login {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 480px) {
+    .login-page {
+        padding: 20px;
+    }
+    .form {
+        padding: 30px 20px;
+    }
+    .Logo {
+        width: 150px;
+    }
+}
+
+
+/* Rainbow border animation for Easter Egg */
+
+@keyframes rainbow {
+    0% {
+        border-color: #ff0000;
+    }
+    17% {
+        border-color: #ff7f00;
+    }
+    33% {
+        border-color: #ffff00;
+    }
+    50% {
+        border-color: #00ff00;
+    }
+    67% {
+        border-color: #0000ff;
+    }
+    83% {
+        border-color: #4b0082;
+    }
+    100% {
+        border-color: #8f00ff;
+    }
+}
+
+.rainbow-border {
+    animation: rainbow 3s linear infinite;
+}
