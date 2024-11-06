@@ -267,7 +267,7 @@ function validateLoginForm(event) {
             incrementLoginAttempts();
             showSuccess(form, 'Login successful! Redirecting...');
             setTimeout(() => {
-                window.location.href = '/index.html';
+                window.location.href = '/https://estas-crypto.github.io/GenZMart/';
             }, 2000);
         }, 1500);
     }
