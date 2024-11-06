@@ -267,7 +267,7 @@ function validateLoginForm(event) {
             incrementLoginAttempts();
             showSuccess(form, 'Login successful! Redirecting...');
             setTimeout(() => {
-                window.location.href = '/index.html';
+                window.location.href = '/login.html';
             }, 2000);
         }, 1500);
     }
